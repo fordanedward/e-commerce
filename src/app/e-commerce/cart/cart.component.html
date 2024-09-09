@@ -1,0 +1,40 @@
+<!-- <ul>
+    <li *ngFor="let cart_item of cart_items">
+      {{ cart_item.name }}  
+        <form [formGroup]="myForm">
+          <input formControlName="myInput" />
+        </form> 
+        PHP {{ cart_item.price }}&nbsp;&nbsp;<button (click)="removeItemFromCart(cart_item)">Remove</button>
+    </li>
+  </ul> -->
+
+<table cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cart_item of cart_items; let i = index">
+      <td>{{ cart_item.name }}</td>
+      <td>
+        <input
+          type="number"
+          [(ngModel)]="cart_item.quantity"
+          placeholder="Enter value"
+        />
+      </td>
+      <td>{{ cart_item.price | currency }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="removeItemFromCart(cart_item)">Remove</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Total Price: {{ getTotalPrice() | currency }}</td>
+      <td><button class="btn btn-danger " data-bs-dismiss="modal" (click)="checkout(getTotalPrice())">Checkout</button></td>
+    </tr>
+  </tbody>
+</table>

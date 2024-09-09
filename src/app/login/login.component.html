@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 400px; border-radius: 10px;">
+    <ul class="nav nav-tabs mb-4" id="authTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="createAccount-tab" data-bs-toggle="tab" data-bs-target="#createAccount" type="button" role="tab" aria-controls="createAccount" aria-selected="false">Create Account</button>
+      </li>
+      <p class style="color: #000000c5;"> <b>Hello there! Welcome to EMF-Commerce!</b></p>
+    </ul>
+
+    <div class="tab-content" id="authTabContent">
+      <!-- Login Form -->
+      <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <input id="email" formControlName="email" type="text" class="form-control" placeholder="Email" />
+            <div class="text-danger mt-1" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Email is required.
+          </div>
+          </div>
+          <div class="form-group mb-4">
+            <input id="password" formControlName="password" type="password" class="form-control" placeholder="Password" />
+            <div class="text-danger mt-1" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Password is required.
+          </div>
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+        </form>
+      </div>
+
+      <!-- Create Account Form -->
+      <div class="tab-pane fade" id="createAccount" role="tabpanel" aria-labelledby="createAccount-tab">
+        <form [formGroup]="createAccountForm" (ngSubmit)="onCreateAccount()">
+          <div class="form-group mb-3">
+            <input id="email" formControlName="email" type="text" class="form-control" placeholder="Email" />
+          </div>
+          <div class="form-group mb-3">
+            <input id="password" formControlName="password" type="password" class="form-control" placeholder="Password" />
+          </div>
+          <div class="form-group mb-3">
+            <input id="first_name" formControlName="first_name" type="text" class="form-control" placeholder="First Name" />
+          </div>
+          <div class="form-group mb-3">
+            <input id="middle_name" formControlName="middle_name" type="text" class="form-control" placeholder="Middle Name" />
+          </div>
+          <div class="form-group mb-3">
+            <input id="last_name" formControlName="last_name" type="text" class="form-control" placeholder="Last Name" />
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="createAccountForm.invalid">CREATE ACCOUNT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
